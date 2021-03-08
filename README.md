@@ -15,13 +15,13 @@ python 3.6.9, torch 1.7.1
 1. Download the overlapped speech of [LibriCSS dataset](https://github.com/chenzhuo1011/libri_css).
 
     ```bash
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1PdloA-V8HGxkRu9MnT35_civpc3YXJsT' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1PdloA-V8HGxkRu9MnT35_civpc3YXJsT" -O overlapped_speech && rm -rf /tmp/cookies.txt
-    ```
+    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1PdloA-V8HGxkRu9MnT35_civpc3YXJsT' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1PdloA-V8HGxkRu9MnT35_civpc3YXJsT" -O overlapped_speech.zip && rm -rf /tmp/cookies.txt && unzip overlapped_speech.zip && rm overlapped_speech.zip && mv libricss_overlapped_speech overlapped_speech
+   ```
 
 2. Download the Conformer separation models.
 
     ```bash
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1OlTbEvxYUoqWIHfeAXCftL9srbWUo4I1' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1OlTbEvxYUoqWIHfeAXCftL9srbWUo4I1" -O checkpoints && rm -rf /tmp/cookies.txt
+    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1OlTbEvxYUoqWIHfeAXCftL9srbWUo4I1' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1OlTbEvxYUoqWIHfeAXCftL9srbWUo4I1" -O checkpoints.zip && rm -rf /tmp/cookies.txt && unzip checkpoints.zip && rm checkpoints.zip && mv css_with_conformer_checkpoints checkpoints
     ```
 
 3. Run the separation.
@@ -29,10 +29,10 @@ python 3.6.9, torch 1.7.1
     3.1  Single-channel separation
     
     ```bash
-    export $MODEL_NAME=1ch_conformer_base
+    export MODEL_NAME=1ch_conformer_base
     python3 separate.py \
         --checkpoint checkpoints/$MODEL_NAME \
-        --mix-scp overlapped_speech_1ch.scp \
+        --mix-scp utils/overlapped_speech_1ch.scp \
         --dump-dir separated_speech/monaural/utterances_with_$MODEL_NAME \
         --device-id 0 \
         --num_spks 2
@@ -43,10 +43,10 @@ python 3.6.9, torch 1.7.1
     3.2 Seven-channel separation
     
     ```bash
-    export $MODEL_NAME=conformer_base
+    export MODEL_NAME=conformer_base
     python3 separate.py \
         --checkpoint checkpoints/$MODEL_NAME \
-        --mix-scp overlapped_speech_7ch.scp \
+        --mix-scp utils/overlapped_speech_7ch.scp \
         --dump-dir separated_speech/7ch/utterances_with_$MODEL_NAME \
         --device-id 0 \
         --num_spks 2 \
