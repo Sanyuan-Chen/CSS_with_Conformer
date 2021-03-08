@@ -183,7 +183,7 @@ class EncoderLayer(nn.Module):
 
         out = self.layer_norm(x)
 
-        return out, pos_k, mask
+        return out
 
 
 class ConformerEncoder(nn.Module):
@@ -233,8 +233,8 @@ class ConformerEncoder(nn.Module):
             pos_k, _ = self.pos_emb(pos_seq)
         else:
             pos_k = None
-
-        xs, _, _ = self.encoders(xs, pos_k, masks)
+        for layer in self.encoders:
+            xs = layer(xs, pos_k, masks)
 
         return xs, masks
 
@@ -260,7 +260,6 @@ class ConformerCSS(nn.Module):
                  num_bins=257,
                  num_spks=2,
                  num_nois=1,
-                 streaming_mask=False,
                  conformer_conf=default_encoder_conf):
         super(ConformerCSS, self).__init__()
 
@@ -278,7 +277,6 @@ class ConformerCSS(nn.Module):
             self.input_scale = nn.Parameter(self.input_scale, requires_grad=False)
 
         # Conformer Encoders
-        conformer_conf["causal"] = streaming_mask
         self.conformer = ConformerEncoder(in_features, **conformer_conf)
 
         self.num_bins = num_bins

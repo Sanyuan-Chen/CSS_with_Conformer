@@ -59,7 +59,7 @@ class Separator(object):
         """
         egs["mix"] = th.from_numpy(egs["mix"][None, :]).to(self.device, non_blocking=True)
         with th.no_grad():
-            spks = self.executor(egs, record=True)
+            spks = self.executor(egs)
             spks = [s.detach().squeeze().cpu().numpy() for s in spks]
             return spks
 
@@ -87,6 +87,7 @@ def run(args):
     dump_dir = Path(args.dump_dir)
     dump_dir.mkdir(exist_ok=True, parents=True)
 
+    print(f"Start Separation " + ("w/ mvdr" if args.mvdr else "w/o mvdr"))
     for key, egs in egs_reader:
         print(f"Processing utterance {key}...")
         mixed = egs["mix"]
