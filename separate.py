@@ -35,7 +35,7 @@ class EgsReader(object):
 
 class Separator(object):
     """
-    A simple wrapper for speech separation (output audio)
+    A simple wrapper for speech separation
     """
     def __init__(self, cpt_dir, get_mask=False, device_id=-1):
         # load executor
