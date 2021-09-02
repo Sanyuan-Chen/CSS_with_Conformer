@@ -1,4 +1,4 @@
-# Continuous Speech Separation with Conformers
+# Continuous Speech Separation with Conformer
 
 ## Introduction
 
@@ -58,10 +58,12 @@ python 3.6.9, torch 1.7.1
 ## Citation
 If you find our work useful, please cite [our paper](https://arxiv.org/abs/2008.05773):
 ```bibtex
-@article{CSS_with_Conformer,
+@inproceedings{CSS_with_Conformer,
   title={Continuous speech separation with conformer},
-  author={Chen, Sanyuan and Wu, Yu and Chen, Zhuo and Li, Jinyu and Wang, Chengyi and Liu, Shujie and Zhou, Ming},
-  journal={arXiv preprint arXiv:2008.05773},
-  year={2020}
+  author={Chen, Sanyuan and Wu, Yu and Chen, Zhuo and Wu, Jian and Li, Jinyu and Yoshioka, Takuya and Wang, Chengyi and Liu, Shujie and Zhou, Ming},
+  booktitle={ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={5749--5753},
+  year={2021},
+  organization={IEEE}
 }
 ```
