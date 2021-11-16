@@ -13,15 +13,25 @@ python 3.6.9, torch 1.7.1
 
 ## Get Started
 1. Download the overlapped speech of [LibriCSS dataset](https://github.com/chenzhuo1011/libri_css).
-
+    
+    - from Google drive:
     ```bash
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1PdloA-V8HGxkRu9MnT35_civpc3YXJsT' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1PdloA-V8HGxkRu9MnT35_civpc3YXJsT" -O overlapped_speech.zip && rm -rf /tmp/cookies.txt && unzip overlapped_speech.zip && rm overlapped_speech.zip
    ```
-
+    - from [Microsoft Azure Storage](https://msranlcmtteamdrive.blob.core.windows.net/share/CSS_with_Conformer/overlapped_speech.zip?sv=2020-08-04&st=2021-11-16T11%3A38%3A00Z&se=2122-11-17T11%3A38%3A00Z&sr=b&sp=r&sig=Df2SEz9s3e7BGOMvMd6XX%2FzNfSABu1gqiLoKTCFBQh0%3D):
+    ```bash
+    wget "https://msranlcmtteamdrive.blob.core.windows.net/share/CSS_with_Conformer/overlapped_speech.zip?sv=2020-08-04&st=2021-11-16T11%3A38%3A00Z&se=2122-11-17T11%3A38%3A00Z&sr=b&sp=r&sig=Df2SEz9s3e7BGOMvMd6XX%2FzNfSABu1gqiLoKTCFBQh0%3D" -O overlapped_speech.zip && rm -rf /tmp/cookies.txt && unzip overlapped_speech.zip && rm overlapped_speech.zip
+   ```
+   
 2. Download the Conformer separation models.
-
+    
+    - from Google drive:
     ```bash
     wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1OlTbEvxYUoqWIHfeAXCftL9srbWUo4I1' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1OlTbEvxYUoqWIHfeAXCftL9srbWUo4I1" -O checkpoints.zip && rm -rf /tmp/cookies.txt && unzip checkpoints.zip && rm checkpoints.zip
+    ```
+    - from [Microsoft Azure Storage](https://msranlcmtteamdrive.blob.core.windows.net/share/CSS_with_Conformer/checkpoints.zip?sv=2020-08-04&st=2021-11-16T11%3A38%3A56Z&se=2222-11-17T11%3A38%3A00Z&sr=b&sp=r&sig=uLu7hTz6W0LPskHJMyKX9LlaZAf65P2XmKegY%2BV7ZX4%3D):
+    ```bash
+    wget "https://msranlcmtteamdrive.blob.core.windows.net/share/CSS_with_Conformer/checkpoints.zip?sv=2020-08-04&st=2021-11-16T11%3A38%3A56Z&se=2222-11-17T11%3A38%3A00Z&sr=b&sp=r&sig=uLu7hTz6W0LPskHJMyKX9LlaZAf65P2XmKegY%2BV7ZX4%3D" -O checkpoints.zip && rm -rf /tmp/cookies.txt && unzip checkpoints.zip && rm checkpoints.zip
     ```
 
 3. Run the separation.
